@@ -1,8 +1,5 @@
 import React, { ReactNode } from "react";
 
-import Account from "./dropdowns/account";
-import Debug from "./dropdowns/debug";
-
 type NavbarProps = { title: string; children?: ReactNode };
 
 let Navbar = ({ title, children }: NavbarProps) => {
