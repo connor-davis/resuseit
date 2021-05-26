@@ -1,13 +1,13 @@
-let colors = require("tailwindcss/colors");
+let colors = require('tailwindcss/colors');
 
 module.exports = {
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "media", // or 'media' or 'class'
+  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         gray: colors.trueGray,
-        black: "#18181b",
+        black: '#18181b',
       },
     },
   },

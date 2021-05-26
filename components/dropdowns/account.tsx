@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Menu } from "@headlessui/react";
-import React from "react";
+import Link from 'next/link';
+import { Menu } from '@headlessui/react';
+import React from 'react';
 
-let Account: React.FC = () => {
+let AccountDropdown: React.FC = () => {
   let LoginIcon: React.FC = () => {
     return (
       <svg
@@ -43,7 +43,7 @@ let Account: React.FC = () => {
 
   return (
     <Menu as="div" className="relative">
-      <Menu.Button className="flex justify-center items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none">
+      <Menu.Button className="flex justify-center items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
         <div>
           <svg
             className="w-4 h-4"
@@ -63,10 +63,10 @@ let Account: React.FC = () => {
         <div>Account</div>
       </Menu.Button>
 
-      <Menu.Items className="flex flex-col w-48 absolute z-10 top-11 right-0 p-2 bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800">
+      <Menu.Items className="flex flex-col w-48 absolute z-10 top-11 right-0 p-2 bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800 rounded-md">
         <Menu.Item>
           <Link href="/authentication/login">
-            <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-blue-200 hover:text-blue-500 p-2 cursor-pointer">
+            <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 p-2 cursor-pointer rounded-md">
               <LoginIcon />
               <div>Login</div>
             </div>
@@ -75,7 +75,7 @@ let Account: React.FC = () => {
 
         <Menu.Item>
           <Link href="/authentication/register">
-            <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-blue-200 hover:text-blue-500 p-2 cursor-pointer">
+            <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 p-2 cursor-pointer rounded-md">
               <RegisterIcon />
               <div>Register</div>
             </div>
@@ -86,4 +86,4 @@ let Account: React.FC = () => {
   );
 };
 
-export default Account;
+export default AccountDropdown;

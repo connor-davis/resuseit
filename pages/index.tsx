@@ -1,7 +1,11 @@
-import Account from "../components/dropdowns/account";
-import Head from "next/head";
-import Navbar from "../components/navbar";
-import React from "react";
+import AccountDropdown from '../components/dropdowns/account';
+import CollectionsDropdown from '../components/dropdowns/collections';
+import CollectorsDropdown from '../components/dropdowns/collectors';
+import Footer from '../components/footer';
+import Head from 'next/head';
+import ItemsDropdown from '../components/dropdowns/items';
+import Navbar from '../components/navbar';
+import React from 'react';
 
 const Index: React.FC = () => {
   return (
@@ -9,9 +13,16 @@ const Index: React.FC = () => {
       <Head>
         <title>ReUse-It | Welcome.</title>
       </Head>
-      <Navbar title="ReUse-It">
-        <Account />
-      </Navbar>
+      <div className="flex flex-col relative h-screen w-screen">
+        <Navbar title="ReUse-It">
+          <CollectionsDropdown />
+          <CollectorsDropdown />
+          <ItemsDropdown />
+          <AccountDropdown />
+        </Navbar>
+        <div className="mb-auto"></div>
+        <Footer></Footer>
+      </div>
     </>
   );
 };
