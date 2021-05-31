@@ -1,8 +1,56 @@
+import React, { useEffect, useState } from 'react';
+import {
+  getUserInformation,
+  setUserInformation,
+} from '../../store/slices/user';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Head from 'next/head';
 import Link from 'next/link';
-import React from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 let LoginPage: React.FC = () => {
+  let dispatch = useDispatch();
+  let router = useRouter();
+
+  let userInformation = useSelector(getUserInformation);
+
+  let [userNameOrPhoneNumber, setUserNameOrPhoneNumber] = useState('');
+  let [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if (userInformation.userAuthenticationToken) router.push('/');
+  }, [userInformation]);
+
+  let perform = async () => {
+    let data = {};
+
+    if (
+      userNameOrPhoneNumber.startsWith('+') ||
+      userNameOrPhoneNumber.startsWith('0') ||
+      parseInt(userNameOrPhoneNumber)
+    )
+      data = {
+        phoneNumber: userNameOrPhoneNumber,
+        password,
+      };
+    else {
+      data = {
+        username: userNameOrPhoneNumber,
+        password,
+      };
+    }
+
+    let response = await axios.post(
+      'http://localhost:3000/api/authentication/login',
+      data
+    );
+
+    if (response.data.success) dispatch(setUserInformation(response.data.data));
+    else console.log(response.data);
+  };
+
   return (
     <>
       <Head>
@@ -20,11 +68,17 @@ let LoginPage: React.FC = () => {
               <input
                 className="outline-none px-2 py-1 bg-gray-200 w-full rounded-md"
                 placeholder="Username or Phone Number"
+                value={userNameOrPhoneNumber}
+                onChange={({ target: { value } }) =>
+                  setUserNameOrPhoneNumber(value)
+                }
               />
 
               <input
                 className="outline-none px-2 py-1 bg-gray-200 w-full rounded-md"
                 placeholder="Password"
+                value={password}
+                onChange={({ target: { value } }) => setPassword(value)}
               />
             </div>
 
@@ -35,7 +89,10 @@ let LoginPage: React.FC = () => {
                 </div>
               </Link>
 
-              <div className="text-center bg-green-500 text-white rounded-md px-2 py-1 cursor-pointer">
+              <div
+                className="text-center bg-green-500 text-white rounded-md px-2 py-1 cursor-pointer"
+                onClick={() => perform()}
+              >
                 Continue
               </div>
             </div>

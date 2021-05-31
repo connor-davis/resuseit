@@ -13,10 +13,6 @@ import { useSelector } from 'react-redux';
 const Index: React.FC = () => {
   let userInformation = useSelector(getUserInformation);
 
-  useEffect(() => {
-    console.log(userInformation);
-  });
-
   return (
     <>
       <Head>
@@ -24,7 +20,7 @@ const Index: React.FC = () => {
       </Head>
       <div className="flex flex-col relative h-screen w-screen">
         <Navbar title="ReUse-It">
-          {userInformation.length > 0 ? (
+          {userInformation.userAuthenticationToken ? (
             <>
               <CollectionsDropdown />
               <CollectorsDropdown />
