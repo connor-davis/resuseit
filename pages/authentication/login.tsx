@@ -97,14 +97,14 @@ let LoginPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex flex-row space-x-2 justify-start w-full">
+            {/* <div className="flex flex-row space-x-2 justify-start w-full">
               <div>Don't have an account?</div>
               <Link href="/authentication/register">
                 <div className="text-center text-green-500 cursor-pointer">
                   Register.
                 </div>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

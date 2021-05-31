@@ -7,6 +7,7 @@ import Footer from '../components/footer';
 import Head from 'next/head';
 import ItemsDropdown from '../components/dropdowns/items';
 import Navbar from '../components/navbar';
+import UsersDropdown from '../components/dropdowns/users';
 import { getUserInformation } from '../store/slices/user';
 import { useSelector } from 'react-redux';
 
@@ -24,6 +25,7 @@ const Index: React.FC = () => {
             <>
               <CollectionsDropdown />
               <CollectorsDropdown />
+              <UsersDropdown />
               <ItemsDropdown />
             </>
           ) : (

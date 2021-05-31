@@ -89,7 +89,11 @@ let AccountDropdown: React.FC = () => {
             />
           </svg>
         </div>
-        <div>Account</div>
+        <div>
+          {userInformation.userAuthenticationToken
+            ? userInformation.userFirstName + ' ' + userInformation.userLastName
+            : 'Account'}
+        </div>
       </Menu.Button>
 
       <Menu.Items className="flex flex-col w-48 absolute z-10 md:top-11 md:right-0 top-0 p-2 bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800 rounded-md">
@@ -115,7 +119,7 @@ let AccountDropdown: React.FC = () => {
                 </div>
               </Link>
             </Menu.Item>
-
+            {/* 
             <Menu.Item>
               <Link href="/authentication/register">
                 <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 p-2 cursor-pointer rounded-md">
@@ -123,7 +127,7 @@ let AccountDropdown: React.FC = () => {
                   <div>Register</div>
                 </div>
               </Link>
-            </Menu.Item>
+            </Menu.Item> */}
           </>
         )}
       </Menu.Items>
