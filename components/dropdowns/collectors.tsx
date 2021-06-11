@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import AddCollectorModal from '../modals/collectors/add';
+import CollectorsIcon from '../icons/collectors';
 import Link from 'next/link';
 import { Menu } from '@headlessui/react';
 
@@ -54,20 +55,7 @@ let CollectorsDropdown: React.FC = () => {
       />
       <Menu.Button className="flex justify-center items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
         <div>
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-            />
-          </svg>
+          <CollectorsIcon />
         </div>
         <div>Collectors</div>
       </Menu.Button>

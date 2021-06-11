@@ -1,20 +1,13 @@
 import { ISidebarProps } from '../../types';
 import React from 'react';
-import SidebarItem from './sidebarItem';
 
-let Sidebar: React.FC = ({ header, footer, children }: ISidebarProps) => {
+let Sidebar = ({ header, footer, children }: ISidebarProps) => {
   return (
-    <div className="hidden md:flex md:w-64 h-full">
-      <SidebarItem
-        itemStart={[
-          <div className="flex text-green-500 w-auto h-auto">Hello World</div>,
-        ]}
-        itemEnd={[
-          <div className="flex text-green-500 w-auto h-auto">Hello World</div>,
-        ]}
-      >
-        Hello World
-      </SidebarItem>
+    <div className="flex flex-col border-r border-gray-300 dark:border-gray-800 hidden md:flex">
+      <div className="relative overflow-y-auto flex-col w-64 relative h-full">
+        {children}
+      </div>
+      <div>{footer}</div>
     </div>
   );
 };

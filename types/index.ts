@@ -1,13 +1,14 @@
 import React, { ReactNode } from 'react';
 
 export type ISidebarProps = {
-  header?: React.FC;
-  footer?: React.FC;
+  header?: JSX.Element;
+  footer?: JSX.Element;
   children?: any;
 };
 
 export type ISidebarItemProps = {
-  itemStart?: ReactNode[];
-  itemEnd?: ReactNode[];
+  path?: string;
+  itemStart?: JSX.Element[];
+  itemEnd?: JSX.Element[];
   children?: ReactNode;
 };

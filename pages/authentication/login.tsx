@@ -46,7 +46,7 @@ let LoginPage: React.FC = () => {
         <title>ReUse-It | Authenticate.</title>
       </Head>
 
-      <div className="flex flex-row justify-center items-center w-screen bg-gray-100 dark:bg-black">
+      <div className="text-gray-700 dark:text-gray-100 flex flex-row justify-center items-center w-screen bg-gray-100 dark:bg-black">
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100 dark:bg-black">
           <div className="flex flex-col items-center px-3 py-2 space-y-5 rounded-lg border-l border-t border-r border-b border-gray-300 dark:border-gray-800 bg-gray-100 dark:bg-black w-64 md:w-auto">
             <div className="text-lg md:text-xl font-bold my-5">
