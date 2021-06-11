@@ -51,32 +51,34 @@ let AddCollectionModal = ({
             leaveTo="opacity-0 scale-95"
           >
             <div className="inline-block w-auto p-3 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-100 dark:bg-black shadow-xl rounded-2xl border-l border-t border-r border-b border-gray-300 dark:border-gray-800">
-              <Dialog.Title
-                as="h3"
-                className="text-lg font-medium leading-6 text-gray-900 dark:text-white text-center mb-5"
-              >
-                Add Collection
-              </Dialog.Title>
-              <div className="mt-2">
-                <p className="text-sm text-gray-500 dark:text-gray-400"></p>
-              </div>
-
-              <div className="flex justify-center items-center mt-4 w-full space-x-2">
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-green-900 bg-green-100 border border-transparent rounded-md hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-500"
-                  onClick={() => onAdd()}
+              <div className="bg-gray-100 dark:bg-black">
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-medium leading-6 text-gray-900 dark:text-white text-center mb-5"
                 >
-                  Add
-                </button>
+                  Add Collection
+                </Dialog.Title>
+                <div className="mt-2">
+                  <p className="text-sm text-gray-500 dark:text-gray-400"></p>
+                </div>
 
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-                  onClick={() => onCancel()}
-                >
-                  Cancel
-                </button>
+                <div className="flex justify-center items-center mt-4 w-full space-x-2">
+                  <button
+                    type="button"
+                    className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-green-900 bg-green-100 border border-transparent rounded-md hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-500"
+                    onClick={() => onAdd()}
+                  >
+                    Add
+                  </button>
+
+                  <button
+                    type="button"
+                    className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    onClick={() => onCancel()}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           </Transition.Child>

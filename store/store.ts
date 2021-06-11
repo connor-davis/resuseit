@@ -6,10 +6,12 @@ import {
 } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 
+import { modeSlice } from './slices/mode';
 import storage from 'redux-persist/lib/storage';
 import { userSlice } from './slices/user';
 
 let userReducer = userSlice.reducer;
+let modeReducer = modeSlice.reducer;
 
 let persistConfig = {
   key: 'root',
@@ -28,6 +30,7 @@ function loggerMiddleware(store) {
 
 let rootReducer = combineReducers({
   userReducer,
+  modeReducer,
 });
 
 let persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -13,9 +13,7 @@ let Navbar = ({ title, children }: NavbarProps) => {
       <div className="font-semibold text-lg">{title}</div>
       <div className="flex space-x-2">
         <div
-          className={` absolute md:relative top-16 left-0 md:top-0 z-20 md:flex flex-col md:flex-row md:space-x-6 font-semibold w-screen md:w-auto bg-gray-100 dark:bg-black border-b border-gray-300 dark:border-gray-800 md:border-none md:shadow-none md:bg-transparent p-6 pt-0 md:p-0 md:items-center ${
-            mobileOpen ? 'flex' : 'hidden'
-          } md:space-x-2`}
+          className={` absolute md:relative top-14 left-0 md:top-0 z-20 md:flex flex-col md:flex-row md:space-x-6 font-semibold w-screen md:w-auto bg-gray-100 dark:bg-black border-b border-gray-300 dark:border-gray-800 md:border-none md:shadow-none md:bg-transparent p-6 pt-0 md:p-0 md:items-center md:hidden`}
         >
           {children}
         </div>

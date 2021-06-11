@@ -26,21 +26,10 @@ let LoginPage: React.FC = () => {
   let perform = async () => {
     let data = {};
 
-    if (
-      userNameOrPhoneNumber.startsWith('+') ||
-      userNameOrPhoneNumber.startsWith('0') ||
-      parseInt(userNameOrPhoneNumber)
-    )
-      data = {
-        phoneNumber: userNameOrPhoneNumber,
-        password,
-      };
-    else {
-      data = {
-        username: userNameOrPhoneNumber,
-        password,
-      };
-    }
+    data = {
+      username: userNameOrPhoneNumber,
+      password,
+    };
 
     let response = await axios.post(
       'http://localhost:3000/api/authentication/login',
@@ -59,14 +48,15 @@ let LoginPage: React.FC = () => {
 
       <div className="flex flex-row justify-center items-center w-screen bg-gray-100 dark:bg-black">
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100 dark:bg-black">
-          <div className="flex flex-col items-center px-3 py-2 space-y-5 rounded-lg border-l border-t border-r border-b border-gray-300 dark:border-gray-800d bg-gray-100 dark:bg-black w-64 md:w-auto">
+          <div className="flex flex-col items-center px-3 py-2 space-y-5 rounded-lg border-l border-t border-r border-b border-gray-300 dark:border-gray-800 bg-gray-100 dark:bg-black w-64 md:w-auto">
             <div className="text-lg md:text-xl font-bold my-5">
               Authenticate.
             </div>
 
             <div className="flex flex-col space-y-2 w-full">
               <input
-                className="outline-none px-2 py-1 bg-gray-200 w-full rounded-md"
+                className="outline-none px-2 py-1 bg-gray-200 dark:bg-gray-800 w-full rounded-md"
+                type="text"
                 placeholder="Username or Phone Number"
                 value={userNameOrPhoneNumber}
                 onChange={({ target: { value } }) =>
@@ -75,7 +65,8 @@ let LoginPage: React.FC = () => {
               />
 
               <input
-                className="outline-none px-2 py-1 bg-gray-200 w-full rounded-md"
+                className="outline-none px-2 py-1 bg-gray-200 dark:bg-gray-800 w-full rounded-md"
+                type="password"
                 placeholder="Password"
                 value={password}
                 onChange={({ target: { value } }) => setPassword(value)}

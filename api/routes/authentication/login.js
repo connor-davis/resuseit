@@ -7,7 +7,6 @@ let jwt = require('jsonwebtoken');
 
 router.post('/', async (request, response) => {
   let { body } = request;
-
   if (
     body.username === 'admin' &&
     body.password === process.env.ADMIN_PASSWORD
@@ -30,8 +29,6 @@ router.post('/', async (request, response) => {
 
       try {
         newAdmin.save();
-
-        console.log(newAdmin);
 
         let adminData = newAdmin.toJSON();
 

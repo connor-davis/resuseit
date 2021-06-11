@@ -75,7 +75,7 @@ let CollectionsDropdown: React.FC = () => {
       <Menu.Items className="flex flex-col w-48 absolute z-10 md:top-11 md:right-0 top-0 p-2 bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800 rounded-md">
         <Menu.Item>
           <div
-            className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 p-2 cursor-pointer rounded-md"
+            className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 dark:hover:text-green-500 p-2 cursor-pointer rounded-md"
             onClick={() => setShowAddCollectionModal(true)}
           >
             <AddIcon />
@@ -84,7 +84,7 @@ let CollectionsDropdown: React.FC = () => {
         </Menu.Item>
 
         <Menu.Item>
-          <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 p-2 cursor-pointer rounded-md">
+          <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 dark:hover:text-green-500 p-2 cursor-pointer rounded-md">
             <ListIcon />
             <div>List</div>
           </div>

@@ -1,9 +1,12 @@
+import React, { useState } from 'react';
+
 import AddItemModal from '../modals/items/add';
 import Link from 'next/link';
 import { Menu } from '@headlessui/react';
-import React from 'react';
 
 let ItemsDropdown: React.FC = () => {
+  let [showAddItemModal, setShowAddItemModal] = useState(false);
+
   let AddIcon: React.FC = () => {
     return (
       <svg
@@ -44,7 +47,11 @@ let ItemsDropdown: React.FC = () => {
 
   return (
     <Menu as="div" className="relative">
-      <AddItemModal />
+      <AddItemModal
+        show={showAddItemModal}
+        onAdd={() => {}}
+        onCancel={() => setShowAddItemModal(false)}
+      />
       <Menu.Button className="flex justify-center items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
         <div>
           <svg
@@ -67,14 +74,17 @@ let ItemsDropdown: React.FC = () => {
 
       <Menu.Items className="flex flex-col w-48 absolute z-10 md:top-11 md:right-0 top-0 p-2 bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800 rounded-md">
         <Menu.Item>
-          <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 p-2 cursor-pointer rounded-md">
+          <div
+            className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 dark:hover:text-green-500 p-2 cursor-pointer rounded-md"
+            onClick={() => setShowAddItemModal(true)}
+          >
             <AddIcon />
             <div>Add</div>
           </div>
         </Menu.Item>
 
         <Menu.Item>
-          <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 p-2 cursor-pointer rounded-md">
+          <div className="flex flex-auto items-center space-x-2 text-gray-800 dark:text-gray-100 hover:bg-green-200 hover:text-green-500 dark:hover:text-green-500 p-2 cursor-pointer rounded-md">
             <ListIcon />
             <div>List</div>
           </div>

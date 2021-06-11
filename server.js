@@ -22,14 +22,17 @@ app
   .then(async () => {
     let server = express();
 
+    server.use(cors());
     server.use(compression());
     server.use(json());
     server.use(urlencoded({ extended: false }));
     server.use(passport.initialize());
     server.use(passport.session());
 
+    console.log(process.env.ADMIN_PASSWORD);
+
     await mongoose.connect(
-      'mongodb://192.168.1.185/reuseit',
+      process.env.MONGOOSE_URL,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

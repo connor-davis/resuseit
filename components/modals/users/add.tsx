@@ -2,13 +2,13 @@ import { Dialog, Transition } from '@headlessui/react';
 
 import React from 'react';
 
-type AddCollectorModalProps = {
+type AddUserModalProps = {
   show?: boolean;
   onAdd?: Function;
   onCancel?: Function;
 };
 
-let AddCollectorModal = ({ show, onAdd, onCancel }: AddCollectorModalProps) => {
+let AddUserModal = ({ show, onAdd, onCancel }: AddUserModalProps) => {
   return (
     <Transition show={show} as={React.Fragment}>
       <Dialog
@@ -51,7 +51,7 @@ let AddCollectorModal = ({ show, onAdd, onCancel }: AddCollectorModalProps) => {
                 as="h3"
                 className="text-lg font-medium leading-6 text-gray-900 dark:text-white text-center mb-5"
               >
-                Add Collector
+                Add User
               </Dialog.Title>
               <div className="mt-2">
                 <p className="text-sm text-gray-500 dark:text-gray-400"></p>
@@ -82,4 +82,4 @@ let AddCollectorModal = ({ show, onAdd, onCancel }: AddCollectorModalProps) => {
   );
 };
 
-export default AddCollectorModal;
+export default AddUserModal;

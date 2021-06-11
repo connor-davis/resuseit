@@ -18,30 +18,36 @@ let RegisterPage: React.FC = () => {
               <div className="flex flex-row space-x-2">
                 <input
                   className="outline-none px-2 py-1 bg-gray-200 rounded-md w-36 md:w-auto"
+                  type="text"
                   placeholder="First Name"
                 />
                 <input
                   className="outline-none px-2 py-1 bg-gray-200 rounded-md w-36 md:w-auto"
+                  type="text"
                   placeholder="Last Name"
                 />
               </div>
               <input
                 className="outline-none px-2 py-1 bg-gray-200 w-full rounded-md"
+                type="text"
                 placeholder="Username e.g. bobiscool"
               />
 
               <input
                 className="outline-none px-2 py-1 bg-gray-200 w-full rounded-md"
+                type="tel"
                 placeholder="Phone Number"
               />
 
               <input
                 className="outline-none px-2 py-1 bg-gray-200 w-full rounded-md"
+                type="password"
                 placeholder="Password"
               />
 
               <input
                 className="outline-none px-2 py-1 bg-gray-200 w-full rounded-md"
+                type="password"
                 placeholder="Confirm Password"
               />
             </div>
