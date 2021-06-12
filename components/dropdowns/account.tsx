@@ -57,7 +57,7 @@ let AccountDropdown: React.FC = () => {
 
   return (
     <Menu as="div" className="relative" onClick={() => {}}>
-      <Menu.Button className="flex w-full items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
+      <Menu.Button className="flex z-50 w-full items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
         <div>
           <svg
             className="w-4 h-4"
@@ -82,7 +82,7 @@ let AccountDropdown: React.FC = () => {
         </div>
       </Menu.Button>
 
-      <Menu.Items className="flex flex-col w-48 absolute z-10 md:top-11 md:right-0 top-0 p-2 bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800 rounded-md">
+      <Menu.Items className="flex flex-col w-48 absolute md:top-11 md:right-0 top-0 p-2 bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800 rounded-md">
         {userInformation.userAuthenticationToken ? (
           <>
             <Menu.Item

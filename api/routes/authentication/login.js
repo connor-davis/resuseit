@@ -1,9 +1,18 @@
-let { Router } = require('express');
+let { Router, response } = require('express');
 let fs = require('fs');
 let { User } = require('../../data/models');
 let router = Router();
 let bcrypt = require('bcrypt');
 let jwt = require('jsonwebtoken');
+let passport = require('passport');
+
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (request, response) => {
+    response.send('welcome');
+  }
+);
 
 router.post('/', async (request, response) => {
   let { body } = request;

@@ -1,6 +1,7 @@
 import '../styles/global.css';
 
 import { Provider, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import { persistor, store } from '../store/store';
 
 import AccountDropdown from '../components/dropdowns/account';
@@ -14,10 +15,10 @@ import Link from 'next/link';
 import LoginPage from './authentication/login';
 import Navbar from '../components/navbar';
 import { PersistGate } from 'redux-persist/integration/react';
-import React from 'react';
 import Sidebar from '../components/sidebar/sidebar';
 import SidebarItem from '../components/sidebar/sidebarItem';
 import UsersIcon from '../components/icons/users';
+import axios from 'axios';
 import { getMode } from '../store/slices/mode';
 import { getUserInformation } from '../store/slices/user';
 
@@ -74,6 +75,17 @@ let UserProvidedNavbar = () => {
 
 let AuthenticationGuard = ({ Component, pageProps }: AppProps) => {
   let userInformation = useSelector(getUserInformation);
+
+  useEffect(() => {
+    (async () => {
+      let response = await axios.get('/api/authentication/login', {
+        headers: {
+          Authorization: 'Bearer ' + userInformation.userAuthenticationToken,
+        },
+      });
+      console.log(response);
+    })();
+  }, []);
 
   return userInformation.userAuthenticationToken ? (
     <div className="outline-none font-sans flex flex-col w-screen h-screen text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-black select-none">

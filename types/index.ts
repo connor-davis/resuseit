@@ -1,4 +1,12 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
+
+export const IUserType = {
+  ADMIN: 'Admin',
+  STAFF: 'Staff',
+  COLLECTOR: 'Collector',
+};
+
+export type INavbarProps = { title?: string; children?: ReactNode };
 
 export type ISidebarProps = {
   header?: JSX.Element;

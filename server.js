@@ -65,8 +65,8 @@ app
       return handle(request, response);
     });
 
-    server.listen(3000, '0.0.0.0', () => {
-      console.log('> Ready on http://localhost:3000');
+    server.listen(3000, () => {
+      console.log('> Ready on http://192.168.1.36:3000');
     });
   })
   .catch((error) => {

@@ -1,13 +1,13 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 
-type NavbarProps = { title: string; children?: ReactNode };
+import { INavbarProps } from '../types';
 
-let Navbar = ({ title, children }: NavbarProps) => {
+let Navbar = ({ title, children }: INavbarProps) => {
   let [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div
-      className={`flex w-screen px-2 py-3 justify-between items-center md:border-b ${
+      className={`flex w-full px-2 py-3 justify-between items-center md:border-b ${
         !mobileOpen ? 'border-b' : 'border-0'
       } border-gray-300 dark:border-gray-800`}
     >
