@@ -1,26 +1,29 @@
-import AccountDropdown from '../components/dropdowns/account';
-import AccountFooter from '../components/accountFooter';
-import CollectionsDropdown from '../components/dropdowns/collections';
-import CollectionsIcon from '../components/icons/collections';
-import CollectorsDropdown from '../components/dropdowns/collectors';
-import CollectorsIcon from '../components/icons/collectors';
-import Content from '../components/content';
-import Footer from '../components/footer';
+import React, { useEffect } from 'react';
+import { getUserInformation, unsetUserInformation } from '../store/slices/user';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Head from 'next/head';
-import ItemsDropdown from '../components/dropdowns/items';
-import ItemsIcon from '../components/icons/items';
-import Navbar from '../components/navbar';
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Sidebar from '../components/sidebar/sidebar';
-import SidebarItem from '../components/sidebar/sidebarItem';
-import UsersDropdown from '../components/dropdowns/users';
-import UsersIcon from '../components/icons/users';
-import { getUserInformation } from '../store/slices/user';
-import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const Index: React.FC = () => {
+  let dispatch = useDispatch();
+
   let userInformation = useSelector(getUserInformation);
+
+  useEffect(() => {
+    axios
+      .get('/api/collections', {
+        headers: {
+          Authorization: 'Bearer ' + userInformation.userAuthenticationToken,
+        },
+      })
+      .then((response) => {
+        if (response.status === 401) dispatch(unsetUserInformation({}));
+      })
+      .catch(() => {
+        dispatch(unsetUserInformation({}));
+      });
+  }, []);
 
   return (
     <>

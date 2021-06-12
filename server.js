@@ -17,6 +17,9 @@ let handle = app.getRequestHandler();
 
 let { routes } = require('./api');
 
+let JwtStrategy = require('./strategies/jwt');
+let session = require('express-session');
+
 app
   .prepare()
   .then(async () => {
@@ -26,10 +29,9 @@ app
     server.use(compression());
     server.use(json());
     server.use(urlencoded({ extended: false }));
+    server.use(session({ secret: process.env.ROOT_PASSWORD }));
     server.use(passport.initialize());
     server.use(passport.session());
-
-    console.log(process.env.ADMIN_PASSWORD);
 
     await mongoose.connect(
       process.env.MONGOOSE_URL,
@@ -44,6 +46,8 @@ app
         else console.log('Connected to database.');
       }
     );
+
+    passport.use('jwt', JwtStrategy);
 
     passport.serializeUser((user, done) => {
       done(null, user.id);
@@ -61,7 +65,7 @@ app
       return handle(request, response);
     });
 
-    server.listen(3000, () => {
+    server.listen(3000, '0.0.0.0', () => {
       console.log('> Ready on http://localhost:3000');
     });
   })

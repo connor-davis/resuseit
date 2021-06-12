@@ -7,8 +7,10 @@ import AccountDropdown from '../components/dropdowns/account';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import CollectionsIcon from '../components/icons/collections';
 import CollectorsIcon from '../components/icons/collectors';
+import DashboardIcon from '../components/icons/dashboard';
 import Footer from '../components/footer';
 import ItemsIcon from '../components/icons/items';
+import Link from 'next/link';
 import LoginPage from './authentication/login';
 import Navbar from '../components/navbar';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -29,6 +31,42 @@ let UserProvidedNavbar = () => {
 
   return (
     <Navbar title="ReUse-It">
+      {userInformation.userAuthenticationToken && (
+        <>
+          <div className="md:hidden">
+            <Link href="/">
+              <div className="flex items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
+                <DashboardIcon />
+                <div>Dashboard</div>
+              </div>
+            </Link>
+            <Link href="/page/collections">
+              <div className="flex items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
+                <CollectionsIcon />
+                <div>Collections</div>
+              </div>
+            </Link>
+            <Link href="/page/collectors">
+              <div className="flex items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
+                <CollectorsIcon />
+                <div>Collectors</div>
+              </div>
+            </Link>
+            <Link href="/page/users">
+              <div className="flex items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
+                <UsersIcon />
+                <div>Users</div>
+              </div>
+            </Link>
+            <Link href="/page/items">
+              <div className="flex items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
+                <ItemsIcon />
+                <div>Items</div>
+              </div>
+            </Link>
+          </div>
+        </>
+      )}
       <AccountDropdown />
     </Navbar>
   );
@@ -42,6 +80,9 @@ let AuthenticationGuard = ({ Component, pageProps }: AppProps) => {
       <UserProvidedNavbar />
       <div className="outline-none font-sans relative flex flex-row justify-start w-full h-full text-gray-800 dark:text-gray-100 bg-gray-100 dark:bg-black select-none">
         <Sidebar>
+          <SidebarItem itemStart={[<DashboardIcon />]} path="/">
+            Dashboard
+          </SidebarItem>
           <SidebarItem
             itemStart={[<CollectionsIcon />]}
             path="/page/collections"

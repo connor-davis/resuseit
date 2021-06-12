@@ -4,6 +4,7 @@ type NavbarProps = { title: string; children?: ReactNode };
 
 let Navbar = ({ title, children }: NavbarProps) => {
   let [mobileOpen, setMobileOpen] = useState(false);
+
   return (
     <div
       className={`flex w-screen px-2 py-3 justify-between items-center md:border-b ${
@@ -13,13 +14,15 @@ let Navbar = ({ title, children }: NavbarProps) => {
       <div className="font-semibold text-lg">{title}</div>
       <div className="flex space-x-2">
         <div
-          className={`absolute md:relative top-14 left-0 md:top-0 z-20 md:flex flex-col md:flex-row md:space-x-6 font-semibold w-screen md:w-auto bg-gray-100 dark:bg-black border-b border-gray-300 dark:border-gray-800 md:border-none md:shadow-none md:bg-transparent p-6 pt-0 md:p-0 md:items-center ${
+          className={`absolute md:relative top-14 left-0 md:top-0 z-20 md:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 font-semibold w-screen md:w-auto bg-gray-100 dark:bg-black border-b border-gray-300 dark:border-gray-800 md:border-none md:shadow-none md:bg-transparent p-2 pt-0 md:p-0 md:items-center ${
             mobileOpen ? 'flex' : 'hidden'
           }`}
+          onClick={() => setMobileOpen(false)}
         >
           {children}
         </div>
         <button
+          id="menubtn"
           onClick={() => setMobileOpen(!mobileOpen)}
           className="ml-auto md:hidden flex justify-center items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md"
         >

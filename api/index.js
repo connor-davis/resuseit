@@ -1,3 +1,3 @@
-let routes = require("./routes");
+let routes = require('./routes');
 
 module.exports = { routes };

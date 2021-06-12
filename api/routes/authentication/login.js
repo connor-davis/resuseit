@@ -1,5 +1,5 @@
 let { Router } = require('express');
-let { readFileSync } = require('fs');
+let fs = require('fs');
 let { User } = require('../../data/models');
 let router = Router();
 let bcrypt = require('bcrypt');
@@ -7,6 +7,8 @@ let jwt = require('jsonwebtoken');
 
 router.post('/', async (request, response) => {
   let { body } = request;
+  let privateKey = await fs.readFileSync('certs/privateKey.pem', 'utf8');
+
   if (
     body.username === 'admin' &&
     body.password === process.env.ADMIN_PASSWORD
@@ -33,8 +35,9 @@ router.post('/', async (request, response) => {
         let adminData = newAdmin.toJSON();
 
         let userAuthenticationToken = jwt.sign(
-          { sub: adminData.id },
-          readFileSync('certs/privateKey.pem')
+          { sub: adminData._id, iat: Date.now() },
+          privateKey,
+          { expiresIn: 1000 * 60 * 60 * 24, algorithm: 'RS256' } // 1000 * 60 * 60 * 24 = 1d
         );
 
         return response.status(200).json({
@@ -54,8 +57,9 @@ router.post('/', async (request, response) => {
       admin = admin.toJSON();
 
       let userAuthenticationToken = jwt.sign(
-        { sub: admin.id },
-        readFileSync('certs/privateKey.pem')
+        { sub: admin._id, iat: Date.now() },
+        privateKey,
+        { expiresIn: 1000 * 60 * 60 * 24, algorithm: 'RS256' } // 1000 * 60 * 60 * 24 = 1d
       );
 
       return response.status(200).json({

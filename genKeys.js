@@ -18,8 +18,6 @@ generateKeyPair(
     privateKeyEncoding: {
       type: 'pkcs8',
       format: 'pem',
-      cipher: 'aes-256-cbc',
-      passphrase: process.env.ROOT_PASSWORD,
     },
   },
   (error, pub, priv) => {

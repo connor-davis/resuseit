@@ -7,5 +7,6 @@ router.get('/', async (_, response) => {
 
 router.use('/authentication/login', require('./authentication/login'));
 router.use('/authentication/register', require('./authentication/register'));
+router.use('/collections', require('./collection'));
 
 module.exports = router;
