@@ -117,7 +117,7 @@ let AuthenticationGuard = ({ Component, pageProps }: AppProps) => {
             Items
           </SidebarItem>
         </Sidebar>
-        <div className="flex flex-col w-full h-full">
+        <div className="flex flex-col w-full h-full z-0">
           <Component {...pageProps} />
         </div>
       </div>

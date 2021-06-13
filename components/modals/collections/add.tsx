@@ -1,5 +1,5 @@
 import { Dialog, Menu, Transition } from '@headlessui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import SearchIcon from '../../icons/search';
 
@@ -26,12 +26,8 @@ let AddCollectionModal = ({
 
   return (
     <Transition show={show} as={React.Fragment}>
-      <Dialog
-        as="div"
-        className="fixed inset-0 z-20 overflow-y-auto w-auto"
-        static
-        open={show}
-        onClose={() => {}}
+      <div
+        className={`fixed inset-0 z-20 overflow-y-auto ${show ? '' : 'hidden'}`}
       >
         <div className="min-h-screen px-4 text-center">
           <Transition.Child
@@ -43,7 +39,7 @@ let AddCollectionModal = ({
             leaveFrom="opacity-50"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-black opacity-70" />
+            <div className="fixed w-screen h-screen inset-0 bg-black opacity-70" />
           </Transition.Child>
 
           <span
@@ -61,20 +57,23 @@ let AddCollectionModal = ({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block w-auto p-3 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-100 dark:bg-black shadow-xl rounded-2xl border-l border-t border-r border-b border-gray-300 dark:border-gray-800">
+            <div className="inline-block w-auto p-3 my-8 text-left align-middle transition-all transform bg-gray-100 dark:bg-black shadow-xl rounded-2xl border-l border-t border-r border-b border-gray-300 dark:border-gray-800">
               <div className="bg-gray-100 dark:bg-black">
+                <div className="text-lg font-medium leading-6 text-gray-900 dark:text-white text-center mb-5">
+                  Add Collection
+                </div>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500 dark:text-gray-400"></p>
 
                   <div className="flex w-full items-center px-2 py-1">
-                    <div className="px-2 py-2 h-full bg-gray-200 text-green-600">
+                    <div className="px-2 py-2 h-full bg-gray-200 dark:bg-gray-800 text-green-600 rounded-tl-md rounded-bl-md">
                       <SearchIcon />
                     </div>
                     <input
-                      className="px-2 py-1 bg-gray-200 outline-none"
-                      placeholder="Search Collector"
+                      className="px-2 py-1 bg-gray-200 dark:bg-gray-800 outline-none"
+                      placeholder="Search"
                     />
-                    <div className="px-2 py-1 w-full h-full bg-gray-200 text-green-600">
+                    <div className="px-2 py-1 w-full h-full bg-gray-200 dark:bg-gray-800 text-green-600 rounded-tr-md rounded-br-md">
                       <Menu
                         as="div"
                         className="relative inline-block text-left"
@@ -93,12 +92,12 @@ let AddCollectionModal = ({
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="absolute right-0 w-40 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none h-16 overflow-y-auto">
+                          <Menu.Items className="absolute right-0 w-36 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none h-16 overflow-y-auto bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800">
                             <div className="px-1 py-1">
                               {keyWords.map((key) => (
                                 <Menu.Item key={key}>
                                   <div
-                                    className="flex items-center justify-start px-2 py-1 cursor-pointer hover:bg-green-300 hover:text-green-600 transition duration-500 ease-in-out focus:outline-none rounded-md"
+                                    className="flex items-center justify-start px-2 py-1 cursor-pointer hover:bg-green-300 hover:text-green-600 transition duration-500 ease-in-out focus:outline-none rounded-md mb-1"
                                     onClick={() => setKeyWord(key)}
                                   >
                                     {key}
@@ -134,7 +133,7 @@ let AddCollectionModal = ({
             </div>
           </Transition.Child>
         </div>
-      </Dialog>
+      </div>
     </Transition>
   );
 };

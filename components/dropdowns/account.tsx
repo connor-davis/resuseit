@@ -57,7 +57,7 @@ let AccountDropdown: React.FC = () => {
 
   return (
     <Menu as="div" className="relative" onClick={() => {}}>
-      <Menu.Button className="flex z-50 w-full items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
+      <Menu.Button className="flex z-100 w-full items-center space-x-2 px-2 py-1 cursor-pointer hover:bg-gray-300 relative dark:hover:bg-gray-800 transition duration-500 ease-in-out focus:outline-none rounded-md">
         <div>
           <svg
             className="w-4 h-4"
