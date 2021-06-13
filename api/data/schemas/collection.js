@@ -2,7 +2,6 @@ let mongoose = require('mongoose');
 
 let CollectionSchema = mongoose.Schema({
   collectionId: String,
-  collectionDescription: String,
   collectionDate: Date,
   collectionMass: Number,
 

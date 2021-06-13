@@ -1,7 +1,8 @@
 import '../styles/global.css';
 
-import { Provider, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
+import { getUserInformation, unsetUserInformation } from '../store/slices/user';
 import { persistor, store } from '../store/store';
 
 import AccountDropdown from '../components/dropdowns/account';
@@ -20,7 +21,6 @@ import SidebarItem from '../components/sidebar/sidebarItem';
 import UsersIcon from '../components/icons/users';
 import axios from 'axios';
 import { getMode } from '../store/slices/mode';
-import { getUserInformation } from '../store/slices/user';
 
 let ModeProvider = ({ children }) => {
   let mode = useSelector(getMode);
@@ -74,16 +74,22 @@ let UserProvidedNavbar = () => {
 };
 
 let AuthenticationGuard = ({ Component, pageProps }: AppProps) => {
+  let dispatch = useDispatch();
+
   let userInformation = useSelector(getUserInformation);
 
   useEffect(() => {
     (async () => {
-      let response = await axios.get('/api/authentication/login', {
-        headers: {
-          Authorization: 'Bearer ' + userInformation.userAuthenticationToken,
-        },
-      });
-      console.log(response);
+      axios
+        .get('/api/authentication/login', {
+          headers: {
+            Authorization: 'Bearer ' + userInformation.userAuthenticationToken,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch(() => dispatch(unsetUserInformation({})));
     })();
   }, []);
 

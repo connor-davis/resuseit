@@ -37,7 +37,7 @@ let CollectorsPage = () => {
       <Head>
         <title>ReUse-It | Collectors.</title>
       </Head>
-      <Navbar>
+      <Navbar title="Collectors">
         <AddCollectorModal
           show={showAddCollectorModal}
           onAdd={(collector) => console.log(collector)}

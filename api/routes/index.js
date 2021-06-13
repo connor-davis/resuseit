@@ -8,5 +8,8 @@ router.get('/', async (_, response) => {
 router.use('/authentication/login', require('./authentication/login'));
 router.use('/authentication/register', require('./authentication/register'));
 router.use('/collections', require('./collection'));
+router.use('/collectors', require('./collector'));
+router.use('/users', require('./user'));
+router.use('/items', require('./item'));
 
 module.exports = router;

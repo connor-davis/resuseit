@@ -5,6 +5,7 @@ let router = Router();
 let bcrypt = require('bcrypt');
 let jwt = require('jsonwebtoken');
 let passport = require('passport');
+let { IUserType } = require('../../types');
 
 router.get(
   '/',
@@ -36,6 +37,7 @@ router.post('/', async (request, response) => {
         username: 'admin',
         userPhoneNumber: '',
         userPassword,
+        userType: IUserType.ADMIN,
       });
 
       try {
@@ -57,6 +59,7 @@ router.post('/', async (request, response) => {
             username: adminData.username,
             userPhoneNumber: adminData.userPhoneNumber,
             userAuthenticationToken,
+            userType: adminData.userType,
           },
         });
       } catch (error) {
@@ -79,6 +82,7 @@ router.post('/', async (request, response) => {
           username: admin.username,
           userPhoneNumber: admin.userPhoneNumber,
           userAuthenticationToken,
+          userType: admin.userType,
         },
       });
     }

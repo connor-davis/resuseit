@@ -33,7 +33,7 @@ let ItemsPage = () => {
 
   return (
     <div className="flex flex-col w-full h-full z-0">
-      <Navbar>
+      <Navbar title="Items">
         <AddItemModal
           show={showAddItemModal}
           onAdd={(item) => console.log(item)}

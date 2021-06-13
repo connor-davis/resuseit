@@ -33,7 +33,7 @@ let UsersPage = () => {
 
   return (
     <div className="flex flex-col w-full h-full z-0">
-      <Navbar>
+      <Navbar title="Users">
         <AddUserModal
           show={showAddUserModal}
           onAdd={(user) => console.log(user)}
