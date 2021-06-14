@@ -9,7 +9,7 @@ let Navbar = ({ title, children }: INavbarProps) => {
     <div
       className={`flex flex-col w-full px-2 py-3 justify-between items-center md:border-b ${
         !mobileOpen ? 'border-b' : 'border-0'
-      } border-gray-300 dark:border-gray-800 z-10`}
+      } border-gray-300 dark:border-gray-800`}
     >
       <div className="flex justify-between w-full items-center">
         <div className="font-semibold text-lg">{title}</div>

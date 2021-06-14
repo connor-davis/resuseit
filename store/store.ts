@@ -1,4 +1,3 @@
-import { applyMiddleware, createStore } from 'redux';
 import {
   combineReducers,
   configureStore,
@@ -6,10 +5,12 @@ import {
 } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 
+import { collectorsSlice } from './slices/collectors';
 import { modeSlice } from './slices/mode';
 import storage from 'redux-persist/lib/storage';
 import { userSlice } from './slices/user';
 
+let collectorsReducer = collectorsSlice.reducer;
 let userReducer = userSlice.reducer;
 let modeReducer = modeSlice.reducer;
 
@@ -29,6 +30,7 @@ function loggerMiddleware(store) {
 }
 
 let rootReducer = combineReducers({
+  collectorsReducer,
   userReducer,
   modeReducer,
 });

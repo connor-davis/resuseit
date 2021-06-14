@@ -82,7 +82,7 @@ let AccountDropdown: React.FC = () => {
         </div>
       </Menu.Button>
 
-      <Menu.Items className="flex flex-col w-48 absolute md:top-11 md:right-0 top-0 p-2 bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800 rounded-md">
+      <Menu.Items className="flex flex-col w-48 z-20 absolute md:top-11 md:right-0 top-0 p-2 bg-gray-100 dark:bg-black border-l border-t border-r border-b border-gray-300 dark:border-gray-800 rounded-md">
         {userInformation.userAuthenticationToken ? (
           <>
             <Menu.Item
