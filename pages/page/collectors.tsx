@@ -24,6 +24,7 @@ let CollectorsPage = () => {
 
   let [page, setPage] = useState(1);
   let [sortBy, setSortBy] = useState({ userLastName: 'asc' });
+  let [loading, setLoading] = useState(true);
 
   let [showAddCollectorModal, setShowAddCollectorModal] = useState(false);
 
@@ -37,8 +38,13 @@ let CollectorsPage = () => {
         },
       });
 
-      if (response.status === 200)
+      if (response.status === 200) {
         dispatch(setCollectors(response.data.collectors));
+
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
+      }
     })();
   }, []);
 
@@ -69,7 +75,7 @@ let CollectorsPage = () => {
           },
         }
       )
-      .then((response) => dispatch(addCollector(response)))
+      .then((response) => dispatch(addCollector(response.data.collector)))
       .catch(() => dispatch(unsetUserInformation({})));
   };
 
@@ -94,14 +100,20 @@ let CollectorsPage = () => {
         </div>
       </Navbar>
 
-      <div className="flex flex-col">
-        {collectors.length > 0 &&
-          collectors.map((collector) => (
-            <div key={collector.collectorIdNumber}>
-              {collector.collectorFirstName + ' ' + collector.collectorLastName}
-            </div>
-          ))}
-      </div>
+      {loading ? (
+        <div>Loading</div>
+      ) : (
+        <div className="flex flex-col">
+          {collectors.length > 0 &&
+            collectors.map((collector) => (
+              <div key={collector.collectorIdNumber}>
+                {collector.collectorFirstName +
+                  ' ' +
+                  collector.collectorLastName}
+              </div>
+            ))}
+        </div>
+      )}
     </div>
   );
 };
