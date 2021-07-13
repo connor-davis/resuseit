@@ -93,14 +93,67 @@ router.put(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   StaffGuard,
-  async (request, response) => {}
+  async (request, response) => {
+    let collection = await Collection.findOne({
+      collectionId: request.params.id,
+    });
+
+    if (!collection)
+      return response.status(404).json({
+        error: 'collection-not-found',
+        message: 'The collection does not exist.',
+      });
+    else {
+      Collection.findOneAndUpdate(
+        { _id: collection._id },
+        {
+          ...request.body,
+        },
+        async (error, document) => {
+          if (error)
+            return response.status(500).json({
+              error: 'update-collection-failed',
+              message: 'Unable to update existing collection.',
+              errorMessage: error,
+            });
+          else {
+            let updated = await Collection.findOne({ _id: document._id });
+
+            return response.status(200).json({
+              success: 'updated-collection',
+              message: 'Successfully updated an existing collection.',
+              collection: updated.toJSON(),
+            });
+          }
+        }
+      );
+    }
+  }
 );
 
 router.delete(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   StaffGuard,
-  async (request, response) => {}
+  async (request, response) => {
+    Collection.findOneAndDelete(
+      { collectionId: request.params.id },
+      (error, document, result) => {
+        if (error)
+          return response.status(500).json({
+            error: 'delete-collection-failed',
+            message: 'Unable to delete existing collection.',
+            errorMessage: error,
+          });
+        else
+          return response.status(200).json({
+            success: 'deleted-collection',
+            message: 'Successfully deleted an existing collection.',
+            collectionId: request.params.id,
+          });
+      }
+    );
+  }
 );
 
 module.exports = router;

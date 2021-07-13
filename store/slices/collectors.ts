@@ -16,11 +16,35 @@ let collectorsSlice = createSlice({
     addCollector: (state: ICollectorsState, action: any) => {
       state.collectors = [...state.collectors, action.payload];
     },
+    updateCollector: (state: ICollectorsState, action: any) => {
+      state.collectors = [
+        ...state.collectors.filter(
+          (collector) =>
+            collector.collectorIdNumber !== action.payload.collectorIdNumber
+        ),
+        action.payload,
+      ];
+    },
+    removeCollector: (state: ICollectorsState, action: any) => {
+      state.collectors = [
+        ...state.collectors.filter(
+          (collector) => collector.collectorIdNumber !== action.payload
+        ),
+      ];
+    },
   },
 });
 
-let { setCollectors, addCollector } = collectorsSlice.actions;
+let { setCollectors, addCollector, updateCollector, removeCollector } =
+  collectorsSlice.actions;
 
 let getCollectors = (state) => state.collectorsReducer.collectors;
 
-export { collectorsSlice, setCollectors, addCollector, getCollectors };
+export {
+  collectorsSlice,
+  setCollectors,
+  addCollector,
+  updateCollector,
+  removeCollector,
+  getCollectors,
+};

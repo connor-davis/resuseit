@@ -3,17 +3,21 @@ let passport = require('passport');
 let router = Router();
 let { Collector } = require('../data/models');
 let { StaffGuard } = require('../guards');
+let uuid = require('uuid');
 
-router.get(
+router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   StaffGuard,
   async (request, response) => {
     let limit = 10;
-    let page = request.headers.page;
-    let sortBy = request.headers.sortBy;
+    let page = request.body.page;
+    let sortBy = request.body.sortBy;
 
     page = Math.max(0, page);
+    page = Math.ceil(page);
+
+    console.log(sortBy);
 
     Collector.find()
       .limit(limit)
@@ -36,7 +40,7 @@ router.get(
           return response.status(200).json({
             collectors,
             page,
-            pages: count / limit,
+            pages: Math.ceil(count / limit),
           });
         });
       });
@@ -68,7 +72,10 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   StaffGuard,
   async (request, response) => {
-    let newCollector = new Collector(request.body);
+    let newCollector = new Collector({
+      collectorId: uuid.v4(),
+      ...request.body,
+    });
 
     try {
       newCollector.save();
@@ -92,14 +99,67 @@ router.put(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   StaffGuard,
-  async (request, response) => {}
+  async (request, response) => {
+    let collector = await Collector.findOne({
+      collectorId: request.params.id,
+    });
+
+    if (!collector)
+      return response.status(404).json({
+        error: 'collector-not-found',
+        message: 'The collector does not exist.',
+      });
+    else {
+      Collector.findOneAndUpdate(
+        { _id: collector._id },
+        {
+          ...request.body,
+        },
+        async (error, document) => {
+          if (error)
+            return response.status(500).json({
+              error: 'update-collector-failed',
+              message: 'Unable to update existing collector.',
+              errorMessage: error,
+            });
+          else {
+            let updated = await Collector.findOne({ _id: document._id });
+
+            return response.status(200).json({
+              success: 'updated-collector',
+              message: 'Successfully updated an existing collector.',
+              collector: updated.toJSON(),
+            });
+          }
+        }
+      );
+    }
+  }
 );
 
 router.delete(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   StaffGuard,
-  async (request, response) => {}
+  async (request, response) => {
+    Collector.findOneAndDelete(
+      { collectorId: request.params.id },
+      (error, document, result) => {
+        if (error)
+          return response.status(500).json({
+            error: 'delete-collector-failed',
+            message: 'Unable to delete existing collector.',
+            errorMessage: error,
+          });
+        else
+          return response.status(200).json({
+            success: 'deleted-collector',
+            message: 'Successfully deleted an existing collector.',
+            collectorId: request.params.id,
+          });
+      }
+    );
+  }
 );
 
 module.exports = router;
